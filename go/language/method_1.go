@@ -9,7 +9,7 @@ type user struct {
 }
 
 // notify implements a method with a value receiver: u of type user
-// In Go, a function is called a method if that function has declare within it a receiver.
+// In Go, a function is called a method if that function has receiver declared within itself.
 // It looks and feels like a parameter but it is exactly what it is.
 // Using the value receiver, the method operates on its own copy of the value that is used to make
 // the call.
@@ -18,9 +18,10 @@ func (u user) notify() {
 }
 
 // changeEmail implements a method with a pointer receiver: u of type pointer user
-// Using the pointer reciever, the method operates on share access.
+// Using the pointer receiver, the method operates on shared access.
 func (u *user) changeEmail(email string) {
 	u.email = email
+	fmt.Printf("Changed User Email To %s\n", email)
 }
 
 // These 2 methods above are just for studying the difference between a value receiver and a
@@ -40,7 +41,7 @@ func main() {
 	// Pointers of type user can also be used to call methods declared with both value and pointer receiver.
 	hoanh := &user{"Hoanh", "hoanhan@email.com"}
 	hoanh.notify()
-	hoanh.changeEmail("hoanhan@bennington.edu")
+	hoanh.changeEmail("hoanhan101@gmail.com")
 
 	// hoanh in this example is a pointer that has the type *user. We are still able to call notify.
 	// This is still correct. As long as we deal with the type user, Go can adjust to make the call.
@@ -49,7 +50,7 @@ func main() {
 	// points to and make sure that notify leverages its value semantic and works on its own copy.
 
 	// Similarly, bill has the type user but still be able to call changeEmail. Go will take the
-	// address of bill and do the rest for you: (*bill).changeEmail().
+	// address of bill and do the rest for you: (&bill).changeEmail().
 
 	// Create a slice of user values with two users.
 	users := []user{
@@ -63,7 +64,7 @@ func main() {
 		u.notify()
 	}
 
-	// Iterate over the slice of users switching semantics. Not good practice.
+	// Iterate over the slice of users switching semantics. This is not a good practice.
 	for _, u := range users {
 		u.changeEmail("it@wontmatter.com")
 	}

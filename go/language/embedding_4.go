@@ -1,5 +1,5 @@
 // ---------------------------------------------
-// OUTER AND INNER TYPE IMPLEMENT SAME INTERFACE
+// OUTER AND INNER TYPE IMPLEMENTING THE SAME INTERFACE
 // ---------------------------------------------
 
 package main
@@ -42,7 +42,7 @@ func main() {
 	ad := admin{
 		user: user{
 			name:  "Hoanh An",
-			email: "hoanhan@bennington.edu",
+			email: "hoanhan101@gmail.com",
 		},
 		level: "superuser",
 	}
